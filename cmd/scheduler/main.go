@@ -27,6 +27,7 @@ import (
 	"sigs.k8s.io/scheduler-plugins/pkg/capacityscheduling"
 	"sigs.k8s.io/scheduler-plugins/pkg/coscheduling"
 	"sigs.k8s.io/scheduler-plugins/pkg/crossnodepreemption"
+	"sigs.k8s.io/scheduler-plugins/pkg/nodecrdresourcefit"
 	"sigs.k8s.io/scheduler-plugins/pkg/noderesources"
 	"sigs.k8s.io/scheduler-plugins/pkg/noderesourcetopology"
 	"sigs.k8s.io/scheduler-plugins/pkg/podstate"
@@ -57,6 +58,7 @@ func main() {
 		app.WithPlugin(crossnodepreemption.Name, crossnodepreemption.New),
 		app.WithPlugin(podstate.Name, podstate.New),
 		app.WithPlugin(qos.Name, qos.New),
+		app.WithPlugin(nodecrdresourcefit.NodeCRDResourceFitName, nodecrdresourcefit.NewNodeCRDResourceFit),
 	)
 
 	// TODO: once we switch everything over to Cobra commands, we can go back to calling

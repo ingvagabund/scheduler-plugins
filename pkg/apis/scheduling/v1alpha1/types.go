@@ -190,3 +190,31 @@ type PodGroupList struct {
 	// Items is the list of PodGroup
 	Items []PodGroup `json:"items"`
 }
+
+// +genclient
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// PodGroup is a collection of Pod; used for batch workload.
+type ClusterScopedResorces struct {
+	metav1.TypeMeta `json:",inline"`
+	// Standard object's metadata.
+	// +optional
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+
+	// Specification of the desired behavior of the cluster scoped resource.
+	// +optional
+	Field string `json:"field,omitempty"`
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// ClusterScopedResorcesList is a collection of ClusterScopedResorces.
+type ClusterScopedResorcesList struct {
+	metav1.TypeMeta `json:",inline"`
+	// Standard list metadata
+	// +optional
+	metav1.ListMeta `json:"metadata,omitempty"`
+
+	// Items is the list of ClusterScopedResorces
+	Items []ClusterScopedResorces `json:"items"`
+}
